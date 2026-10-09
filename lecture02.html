@@ -6,8 +6,8 @@
 <script src="lecture02_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="lecture02_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="lecture02_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="lecture02_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+<link href="lecture02_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="伊藤 翼">
   <meta name="dcterms.date" content="2026-10-10">
@@ -21,10 +21,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -203,7 +206,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-伊藤 翼 
+伊藤 翼
 </div>
 </div>
 </div>
@@ -340,20 +343,20 @@
 <li>ファイル名が正しいか確認する</li>
 <li>一番上に見出し1で「第2回講義課題（氏名）」としてください</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource code number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a># 第2回講義課題（氏名）</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource code number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="" aria-label="1"></a># 第2回講義課題（氏名）</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>平均1、標準偏差1の母集団からサンプルサイズを10個無作為抽出したケースと</li>
 <li>平均1、標準偏差1の母集団からサンプルサイズを100000個無作為抽出したケースを</li>
 <li>の平均と標準偏差を求めてください</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource code number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href=""></a># サンプルサイズ10個</span>
-<span id="cb2-2"><a href=""></a>random10 &lt;- rnorm(10, mean = 1, sd = 1)</span>
-<span id="cb2-3"><a href=""></a>mean(random10)</span>
-<span id="cb2-4"><a href=""></a>sd(random10)</span>
-<span id="cb2-5"><a href=""></a># サンプルサイズ100000個</span>
-<span id="cb2-6"><a href=""></a>random100000 &lt;- rnorm(100000, mean = 1, sd = 1)</span>
-<span id="cb2-7"><a href=""></a>mean(random100000)</span>
-<span id="cb2-8"><a href=""></a>sd(random100000)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource code number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="" aria-label="1"></a># サンプルサイズ10個</span>
+<span id="cb2-2"><a href="" aria-label="2"></a>random10 &lt;- rnorm(10, mean = 1, sd = 1)</span>
+<span id="cb2-3"><a href="" aria-label="3"></a>mean(random10)</span>
+<span id="cb2-4"><a href="" aria-label="4"></a>sd(random10)</span>
+<span id="cb2-5"><a href="" aria-label="5"></a># サンプルサイズ100000個</span>
+<span id="cb2-6"><a href="" aria-label="6"></a>random100000 &lt;- rnorm(100000, mean = 1, sd = 1)</span>
+<span id="cb2-7"><a href="" aria-label="7"></a>mean(random100000)</span>
+<span id="cb2-8"><a href="" aria-label="8"></a>sd(random100000)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="本日の講義課題の提出" class="slide level2">
@@ -361,10 +364,10 @@
 <ul>
 <li>二つのヒストグラムを作成してください</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource code number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href=""></a># サンプルサイズ10個</span>
-<span id="cb3-2"><a href=""></a>hist(random10)</span>
-<span id="cb3-3"><a href=""></a># サンプルサイズ100000個</span>
-<span id="cb3-4"><a href=""></a>hist(random100000)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource code number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="" aria-label="1"></a># サンプルサイズ10個</span>
+<span id="cb3-2"><a href="" aria-label="2"></a>hist(random10)</span>
+<span id="cb3-3"><a href="" aria-label="3"></a># サンプルサイズ100000個</span>
+<span id="cb3-4"><a href="" aria-label="4"></a>hist(random100000)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>最後にテキストを挿入して、二つを比較してわかることを書いてください</li>
 </ul>
