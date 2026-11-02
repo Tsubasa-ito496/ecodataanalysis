@@ -6,18 +6,18 @@
 <script src="lecture04_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="lecture04_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="lecture04_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="lecture04_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
-<meta name="author" content="伊藤 翼">
-<meta name="dcterms.date" content="2026-10-24">
-<title>第4回　R (Colaboratory) の使い方(3)</title>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-<link rel="stylesheet" href="lecture04_files/libs/revealjs/dist/reset.css">
-<link rel="stylesheet" href="lecture04_files/libs/revealjs/dist/reveal.css">
-<style>
+<link href="lecture04_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
+
+  <meta name="author" content="伊藤 翼">
+  <meta name="dcterms.date" content="2026-10-24">
+  <title>第4回　R (Colaboratory) の使い方(3)</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="lecture04_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="lecture04_files/libs/revealjs/dist/reveal.css">
+  <style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
@@ -102,12 +102,12 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-<link rel="stylesheet" href="lecture04_files/libs/revealjs/dist/theme/quarto-0a4e1f78cff4525d14a92df50245c04a.css">
-<link href="lecture04_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-<link href="lecture04_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-<link href="lecture04_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-<link href="lecture04_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-<style type="text/css">
+  <link rel="stylesheet" href="lecture04_files/libs/revealjs/dist/theme/quarto-0a4e1f78cff4525d14a92df50245c04a.css">
+  <link href="lecture04_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="lecture04_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="lecture04_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="lecture04_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -199,7 +199,8 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#17194c" class="quarto-title-block center"><h1 class="title">第4回　R (Colaboratory) の使い方(3)</h1>
+<section id="title-slide" data-background-color="#17194c" class="quarto-title-block center">
+  <h1 class="title">第4回　R (Colaboratory) の使い方(3)</h1>
   <p class="subtitle">2026年度 経済データ分析演習B2</p>
 
 <div class="quarto-title-authors">
@@ -211,7 +212,9 @@
 </div>
 
   <p class="date">2026-10-24</p>
-</section><section id="はじめに" class="slide level2"><h2>はじめに</h2>
+</section>
+<section id="はじめに" class="slide level2">
+<h2>はじめに</h2>
 <p>出席登録は13:00から14:30まででに登録してください</p>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -227,8 +230,7 @@
 </div>
 </div>
 <ul>
-<li>Google Classroomへの登録：<a href="https://classroom.google.com/c/NzkxMjEzNjY4MzEz?cjc=gsrnanuj" class="uri">https://classroom.google.com/c/NzkxMjEzNjY4MzEz?cjc=gsrnanuj</a>
-</li>
+<li>Google Classroomへの登録：<a href="https://classroom.google.com/c/NzkxMjEzNjY4MzEz?cjc=gsrnanuj" class="uri">https://classroom.google.com/c/NzkxMjEzNjY4MzEz?cjc=gsrnanuj</a></li>
 </ul>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -243,16 +245,21 @@
 </div>
 </div>
 </div>
-</section><section id="今回の目標" class="slide level2"><h2>今回の目標</h2>
+</section>
+<section id="今回の目標" class="slide level2">
+<h2>今回の目標</h2>
 <ul>
 <li>ColabでDriveをマウントする（Driveのデータを使用できるようにする）</li>
 <li>Driveのデータをインポートする</li>
 <li>インポートしたデータを整理・加工できるようになる</li>
 <li>加工したデータをDriveにアウトプットできるようになる</li>
-</ul></section><section id="講義準備" class="slide level2"><h2>講義準備</h2>
+</ul>
+</section>
+<section id="講義準備" class="slide level2">
+<h2>講義準備</h2>
 <p><strong>第4回講義フォルダ作成</strong></p>
 <ul>
-<li>Drive→Classroom→2025年度 経済データ分析演習B2に「第4回」フォルダを作成</li>
+<li>Drive→Classroom→2026年度 経済データ分析演習B2に「第4回」フォルダを作成</li>
 </ul>
 <p><strong>Classroomからデータをダウンロード</strong></p>
 <ul>
@@ -261,14 +268,19 @@
 </ul>
 <p><strong>Driveへのデータのアップロード</strong></p>
 <ul>
-<li>Driveの「第4回」フォルダにダウンロードしたファイルをアップロードする</li>
-</ul></section><section id="colabの準備1" class="slide level2"><h2>Colabの準備(1)</h2>
+<li>Driveに「演習用データ」フォルダを作成し、ダウンロードしたファイルをアップロードする</li>
+</ul>
+</section>
+<section id="colabの準備1" class="slide level2">
+<h2>Colabの準備(1)</h2>
 <ul>
 <li>Driveの「第4回」フォルダ上で</li>
 <li>「新規」→「その他」→「Google colaboratory」をクリック</li>
 </ul>
 <p><img data-src="images/R18.png" class="" style="width:70.0%" alt="Screenshot of code with a light theme on white background"></p>
-</section><section id="colabの準備2" class="slide level2"><h2>Colabの準備(2)</h2>
+</section>
+<section id="colabの準備2" class="slide level2">
+<h2>Colabの準備(2)</h2>
 <p><strong>ファイル名の変更</strong></p>
 <ul>
 <li>「第4回_学籍番号_氏名.ipynb」に変更</li>
@@ -277,7 +289,9 @@
 <li>※画像は例なので注意してください</li>
 </ul>
 <p><img data-src="images/R00.png" class="" style="width:50.0%" alt="Screenshot of code with a light theme on white background"></p>
-</section><section id="colabの欠点" class="slide level2"><h2>Colabの欠点</h2>
+</section>
+<section id="colabの欠点" class="slide level2">
+<h2>Colabの欠点</h2>
 <p><strong>接続時間制限</strong></p>
 <ul>
 <li><p>90分ルール：ノートブックの接続が切れてから90分経過でリセット</p></li>
@@ -288,7 +302,10 @@
 <ul>
 <li>データなどは全てDriveに保存する</li>
 <li>そのためにDriveにマウント（接続）する必要がある</li>
-</ul></section><section id="driveのマウント" class="slide level2"><h2>Driveのマウント</h2>
+</ul>
+</section>
+<section id="driveのマウント" class="slide level2">
+<h2>Driveのマウント</h2>
 <p><strong>マウント</strong></p>
 <ul>
 <li>マウントとは、ColabからDriveに接続すること</li>
@@ -308,7 +325,9 @@
 </div>
 </div>
 </div>
-</section><section id="マウントの方法python-code1" class="slide level2"><h2>マウントの方法：Python code(1)</h2>
+</section>
+<section id="マウントの方法python-code1" class="slide level2">
+<h2>マウントの方法：Python code(1)</h2>
 <ul>
 <li>以下のCodeをコードセルに入力し実行</li>
 </ul>
@@ -333,14 +352,18 @@
 </div><div class="column fragment" style="width:20%;">
 <p><img data-src="images/R46.png"></p>
 </div></div>
-</section><section id="マウントの方法python-code2" class="slide level2"><h2>マウントの方法：Python code(2)</h2>
+</section>
+<section id="マウントの方法python-code2" class="slide level2">
+<h2>マウントの方法：Python code(2)</h2>
 <p><strong>マウントの状況のチェック</strong></p>
 <ul>
 <li>アイコン選択方法と異なり、左側のバーにファイルは表示されません</li>
 <li>以下のようになっていればOK</li>
 </ul>
 <p><img data-src="images/R47.png" class="" style="width:50.0%" alt="Screenshot of code with a light theme on white background"></p>
-</section><section id="補足他のマウントの方法アイコン選択1" class="slide level2"><h2>補足：他のマウントの方法：アイコン選択(1)</h2>
+</section>
+<section id="補足他のマウントの方法アイコン選択1" class="slide level2">
+<h2>補足：他のマウントの方法：アイコン選択(1)</h2>
 <div class="columns">
 <div class="column fragment" style="width:50%;">
 <p><strong>driveアイコン</strong></p>
@@ -359,7 +382,9 @@
 </div><div class="column fragment" style="width:45%;">
 <p><img data-src="images/R43.png"></p>
 </div></div>
-</section><section id="補足他のマウントの方法アイコン選択2" class="slide level2"><h2>補足：他のマウントの方法：アイコン選択(2)</h2>
+</section>
+<section id="補足他のマウントの方法アイコン選択2" class="slide level2">
+<h2>補足：他のマウントの方法：アイコン選択(2)</h2>
 <p><strong>マウントの状況をチェック</strong></p>
 <ul>
 <li>左側のバーのdriveアイコンに斜線が入る</li>
@@ -367,7 +392,9 @@
 <li>ファイルを選んでいくと「第4回」フォルダの中身が表示される</li>
 </ul>
 <p><img data-src="images/R44.png" class="" style="width:60.0%" alt="Screenshot of code with a light theme on white background"></p>
-</section><section id="ランタイムのタイプの変更" class="slide level2"><h2>ランタイムのタイプの変更</h2>
+</section>
+<section id="ランタイムのタイプの変更" class="slide level2">
+<h2>ランタイムのタイプの変更</h2>
 <p><strong>Rへの変更</strong></p>
 <ul>
 <li>左上の「ランタイム」から「ランタイムのタイプの変更」を選択</li>
@@ -375,7 +402,9 @@
 <li>Driveへのマウントをした後にランタイムのタイプを変更しても、Driveのマウントは切れません</li>
 </ul>
 <p><img data-src="images/R48.png" class="" style="width:60.0%" alt="Screenshot of code with a light theme on white background"></p>
-</section><section id="colabの準備3" class="slide level2"><h2>Colabの準備(3)</h2>
+</section>
+<section id="colabの準備3" class="slide level2">
+<h2>Colabの準備(3)</h2>
 <ul>
 <li>1 テキストセルの挿入</li>
 <li>2 テキストセルに「# 第4回講義課題（氏名）」と入力</li>
@@ -385,7 +414,9 @@
 </ul>
 <p>※ <strong>重要</strong>：日本語以外はすべて半角であることが望ましい（例えば#やスペースなど）</p>
 <p><img data-src="images/R49.png" class="" style="width:70.0%" alt="Screenshot of code with a light theme on white background"></p>
-</section><section id="ライブラリの読み込み1" class="slide level2"><h2>ライブラリの読み込み(1)</h2>
+</section>
+<section id="ライブラリの読み込み1" class="slide level2">
+<h2>ライブラリの読み込み(1)</h2>
 <p><strong>ライブラリ</strong> - 高度な関数、手法のパッケージ群</p>
 <ul>
 <li>デフォルトで入っていない関数などはインストールしないと使えない</li>
@@ -396,10 +427,12 @@
 <col style="width: 17%">
 <col style="width: 82%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: left;"><strong>Packages</strong></th>
 <th style="text-align: left;"><strong>Description</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">R.util</td>
@@ -425,7 +458,10 @@
 </table>
 <ul>
 <li>tidyverseにはdplyrとggplot2が含まれているので、インストールする必要はない</li>
-</ul></section><section id="ライブラリの読み込み2" class="slide level2"><h2>ライブラリの読み込み(2)</h2>
+</ul>
+</section>
+<section id="ライブラリの読み込み2" class="slide level2">
+<h2>ライブラリの読み込み(2)</h2>
 <p>以下のCodeをコードセルに入力し実行</p>
 <p><strong>インストール</strong></p>
 <div class="cell">
@@ -452,16 +488,15 @@
 </div><div class="column fragment" style="width:35%;">
 <p><img data-src="images/R410.png"></p>
 </div></div>
-</section><section id="データのインポート" class="slide level2"><h2>データのインポート</h2>
+</section>
+<section id="データのインポート" class="slide level2">
+<h2>データのインポート</h2>
 <p><strong>Driveのデータをインポート</strong></p>
 <ul>
 <li>以下のCodeをコードセルに入力し実行</li>
 </ul>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-1-1">Code</a></li>
-<li><a href="#tabset-1-2">Output</a></li>
-</ul>
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Code</a></li><li><a href="#tabset-1-2">Output</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell">
@@ -577,7 +612,9 @@
 </div><div class="column fragment" style="width:35%;">
 <p><img data-src="images/R411.png"></p>
 </div></div>
-</section><section id="データの加工1基本的なこと" class="slide level2"><h2>データの加工(1)：基本的なこと(|&gt;)</h2>
+</section>
+<section id="データの加工1基本的なこと" class="slide level2">
+<h2>データの加工(1)：基本的なこと(|&gt;)</h2>
 <ul>
 <li>はじめにデータインポートのコードセルの下に、テキストセルを挿入して、</li>
 <li>「## データの加工方法」と入力しましょう</li>
@@ -603,21 +640,20 @@
 </div>
 <ul>
 <li>|&gt;でつなぐことで、dataをつかってhead関数を実行することを意味します</li>
-</ul></section><section id="データの加工2データの選択filter-select" class="slide level2"><h2>データの加工(2)：データの選択(filter &amp; select)</h2>
+</ul>
+</section>
+<section id="データの加工2データの選択filter-select" class="slide level2">
+<h2>データの加工(2)：データの選択(filter &amp; select)</h2>
 <p>以下のCodeをコードセルに入力し実行</p>
 <div class="columns">
-<p><strong>行の選択：filter()</strong></p>
-<div class="column fragment" style="width:50%;">
+<p><strong>行の選択：filter()</strong></p><div class="column fragment" style="width:50%;">
 <ul>
 <li>データのフィルタリングを行います</li>
 <li>変数内から必要なデータのみ抽出します</li>
 </ul>
 </div><div class="column fragment" style="width:45%;">
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-2-1">Code</a></li>
-<li><a href="#tabset-2-2">Output</a></li>
-</ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Code</a></li><li><a href="#tabset-2-2">Output</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell">
@@ -728,10 +764,7 @@
 </ul>
 </div><div class="column fragment" style="width:45%;">
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-3-1">Code</a></li>
-<li><a href="#tabset-3-2">Output</a></li>
-</ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Code</a></li><li><a href="#tabset-3-2">Output</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
 <div class="cell">
@@ -757,7 +790,9 @@
 </div>
 </div>
 </div></div>
-</section><section id="データの加工3列の変換mutate" class="slide level2"><h2>データの加工(3)：列の変換(mutate)</h2>
+</section>
+<section id="データの加工3列の変換mutate" class="slide level2">
+<h2>データの加工(3)：列の変換(mutate)</h2>
 <p><strong>列の変換：mutate()</strong></p>
 <ul>
 <li>既存の列の中身を書き換えます</li>
@@ -769,10 +804,7 @@
 <li>条件を指定して、真の場合とそうでない場合を書きます</li>
 </ul>
 <div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-4-1">Code</a></li>
-<li><a href="#tabset-4-2">Output</a></li>
-</ul>
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Code</a></li><li><a href="#tabset-4-2">Output</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="cell">
@@ -798,7 +830,9 @@
 </div>
 </div>
 </div>
-</section><section id="データの加工4列の追加mutate" class="slide level2"><h2>データの加工(4)：列の追加(mutate)</h2>
+</section>
+<section id="データの加工4列の追加mutate" class="slide level2">
+<h2>データの加工(4)：列の追加(mutate)</h2>
 <p><strong>列の追加：mutate()</strong></p>
 <ul>
 <li>新たに変数を追加するときも使用</li>
@@ -806,10 +840,7 @@
 <li>変数名を考えて指定します</li>
 </ul>
 <div class="panel-tabset">
-<ul id="tabset-5" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-5-1">Code</a></li>
-<li><a href="#tabset-5-2">Output</a></li>
-</ul>
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Code</a></li><li><a href="#tabset-5-2">Output</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1">
 <div class="cell">
@@ -836,7 +867,9 @@
 </div>
 </div>
 </div>
-</section><section id="データの加工5条件指定if_else-case_when" class="slide level2"><h2>データの加工(5)：条件指定(if_else &amp; case_when)</h2>
+</section>
+<section id="データの加工5条件指定if_else-case_when" class="slide level2">
+<h2>データの加工(5)：条件指定(if_else &amp; case_when)</h2>
 <p><strong>単一条件指定：if_else(条件, TRUE, FALSE)【再】</strong></p>
 <p><strong>複数条件指定：case_when(条件1 ~ TRUE, 条件2 ~ TRUE, …)</strong></p>
 <ul>
@@ -846,10 +879,7 @@
 <li>最後は、左側にTRUEとして、“~”の右側にこれまで条件を満たさない場合の値を指定</li>
 </ul>
 <div class="panel-tabset">
-<ul id="tabset-6" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-6-1">Code</a></li>
-<li><a href="#tabset-6-2">Output</a></li>
-</ul>
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Code</a></li><li><a href="#tabset-6-2">Output</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1">
 <div class="cell">
@@ -880,16 +910,15 @@
 </div>
 </div>
 </div>
-</section><section id="データの加工6でつなげばすべて実行" class="slide level2"><h2>データの加工(6)：|&gt;でつなげばすべて実行</h2>
+</section>
+<section id="データの加工6でつなげばすべて実行" class="slide level2">
+<h2>データの加工(6)：|&gt;でつなげばすべて実行</h2>
 <ul>
 <li>これまでのコードを|&gt;でつなげばすべて実行できる</li>
 <li>ただし、コードは上からの順番に実行されるので注意</li>
 </ul>
 <div class="panel-tabset">
-<ul id="tabset-7" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-7-1">Code</a></li>
-<li><a href="#tabset-7-2">Output</a></li>
-</ul>
+<ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1">Code</a></li><li><a href="#tabset-7-2">Output</a></li></ul>
 <div class="tab-content">
 <div id="tabset-7-1">
 <div class="cell">
@@ -927,19 +956,17 @@
 </div>
 </div>
 </div>
-</section><section id="加工データの作成" class="slide level2"><h2>加工データの作成</h2>
+</section>
+<section id="加工データの作成" class="slide level2">
+<h2>加工データの作成</h2>
 <ul>
-<li>テキストセルを挿入して、「## 加工したデータの作成と書き出し」と入力 <br>
-</li>
+<li>テキストセルを挿入して、「## 加工したデータの作成と書き出し」と入力 <br></li>
 <li>これまでの実行は、実際にdataの加工をしているわけではなく、操作しているだけ</li>
 <li>加工したデータを新しいオブジェクトとして作成する(“新しいデータ名 &lt;- データ加工”)</li>
 <li>先ほどの加工したデータを”data2”として作成</li>
 </ul>
 <div class="panel-tabset">
-<ul id="tabset-8" class="panel-tabset-tabby">
-<li><a data-tabby-default="" href="#tabset-8-1">Code</a></li>
-<li><a href="#tabset-8-2">Output</a></li>
-</ul>
+<ul id="tabset-8" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-8-1">Code</a></li><li><a href="#tabset-8-2">Output</a></li></ul>
 <div class="tab-content">
 <div id="tabset-8-1">
 <div class="cell">
@@ -972,7 +999,9 @@
 </div>
 </div>
 </div>
-</section><section id="ファイルの書き出しcsvファイルへの書き出し" class="slide level2"><h2>ファイルの書き出し：csvファイルへの書き出し</h2>
+</section>
+<section id="ファイルの書き出しcsvファイルへの書き出し" class="slide level2">
+<h2>ファイルの書き出し：csvファイルへの書き出し</h2>
 <ul>
 <li>新しく作成したデータをcsvに書き出す</li>
 <li>書き出したデータはマウントしているDriveに保存されます</li>
@@ -986,7 +1015,10 @@
 </div>
 <ul>
 <li><strong>このcsvファイルは提出しないので、注意してください。</strong></li>
-</ul></section><section id="講義課題次ページ有" class="slide level2"><h2>講義課題（次ページ有）</h2>
+</ul>
+</section>
+<section id="講義課題次ページ有" class="slide level2">
+<h2>講義課題（次ページ有）</h2>
 <p><strong>第4回講義課題(1)</strong> - 以下の加工をしたデータを書き出して、そのcsvを提出してください</p>
 <ul>
 <li>テキストセルを挿入して、「## 第4回講義課題」と入力</li>
@@ -1000,7 +1032,10 @@
 <li>名前はそれぞれ、cat5_grade, cat12_birthとする</li>
 <li>健康状態を「よい」1から「よくない」5とするカテゴリー変数をcat5_healthとする</li>
 <li>select関数を使って、idと作成した変数のみを選んでください</li>
-</ul></section><section id="講義課題" class="slide level2"><h2>講義課題</h2>
+</ul>
+</section>
+<section id="講義課題" class="slide level2">
+<h2>講義課題</h2>
 <ul>
 <li>新しく作成したデータのdfをcsvファイルとして、Driveの第4回フォルダに書き出す</li>
 <li>書き出すファイル名は”第4回_学籍番号_氏名.csv”としてください</li>
@@ -1013,19 +1048,36 @@
 </ul>
 <p><br></p>
 <ul>
-<li>
-<strong>注意</strong>：二つ提出が必要です。提出場所を間違えないようにしてください</li>
+<li><strong>注意</strong>：二つ提出が必要です。提出場所を間違えないようにしてください</li>
 </ul>
 
 </section>
-</div>
+    </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 
 </div>
 </div></div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="lecture04_files/libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="lecture04_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="lecture04_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="lecture04_files/libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="lecture04_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="lecture04_files/libs/revealjs/plugin/multiplex/socket.io.js"></script><script src="lecture04_files/libs/revealjs/plugin/multiplex/multiplex.js"></script><script src="lecture04_files/libs/revealjs/plugin/quarto-support/support.js"></script><script src="lecture04_files/libs/revealjs/plugin/notes/notes.js"></script><script src="lecture04_files/libs/revealjs/plugin/search/search.js"></script><script src="lecture04_files/libs/revealjs/plugin/zoom/zoom.js"></script><script src="lecture04_files/libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="lecture04_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="lecture04_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="lecture04_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="lecture04_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="lecture04_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="lecture04_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="lecture04_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
+  <script src="lecture04_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="lecture04_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="lecture04_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="lecture04_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="lecture04_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -1217,42 +1269,84 @@
           RevealZoom
         ]
       });
-    </script><script>
+    </script>
+    
+
+    <script>
+
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
       // slide changes (different for each slide format).
+
       (function () {
+
         // dispatch for htmlwidgets
+
         function fireSlideEnter() {
+
           const event = window.document.createEvent("Event");
+
           event.initEvent("slideenter", true, true);
+
           window.document.dispatchEvent(event);
+
         }
+
     
+
         function fireSlideChanged(previousSlide, currentSlide) {
+
           fireSlideEnter();
+
     
+
           // dispatch for shiny
+
           if (window.jQuery) {
+
             if (previousSlide) {
+
               window.jQuery(previousSlide).trigger("hidden");
+
             }
+
             if (currentSlide) {
+
               window.jQuery(currentSlide).trigger("shown");
+
             }
+
           }
+
         }
+
     
+
         // hookup for slidy
+
         if (window.w3c_slidy) {
+
           window.w3c_slidy.add_observer(function (slide_num) {
+
             // slide_num starts at position 1
+
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
           });
+
         }
+
     
+
       })();
-    </script><script id="quarto-html-after-body" type="application/javascript">
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
         tabsets.forEach(function(tabset) {
@@ -1420,6 +1514,6 @@
         }
       });
       </script>
-
+    
 
 </body></html>
