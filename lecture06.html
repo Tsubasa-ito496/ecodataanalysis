@@ -1,0 +1,2937 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="lecture06_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lecture06_files/libs/quarto-html/tabby.min.js"></script>
+<script src="lecture06_files/libs/quarto-html/popper.min.js"></script>
+<script src="lecture06_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="lecture06_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lecture06_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="lecture06_files/libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
+
+  <meta name="author" content="伊藤 翼">
+  <meta name="dcterms.date" content="2026-11-14">
+  <title>第6回　二変量統計</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="lecture06_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="lecture06_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="lecture06_files/libs/revealjs/dist/theme/quarto-0a4e1f78cff4525d14a92df50245c04a.css">
+  <link href="lecture06_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="lecture06_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="lecture06_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="lecture06_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#17194c" class="quarto-title-block center">
+  <h1 class="title">第6回　二変量統計</h1>
+  <p class="subtitle">2026年度 経済データ分析演習B2</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+伊藤 翼
+</div>
+</div>
+</div>
+
+  <p class="date">2026-11-14</p>
+</section>
+<section id="はじめに" class="slide level2">
+<h2>はじめに</h2>
+<p>出席登録は13:00から14:30まででに登録してください</p>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>出席番号</strong></p>
+</div>
+<div class="callout-content">
+<p>165411</p>
+</div>
+</div>
+</div>
+<ul>
+<li>Google Classroomへの登録：<a href="https://classroom.google.com/c/NzkxMjEzNjY4MzEz?cjc=gsrnanuj" class="uri">https://classroom.google.com/c/NzkxMjEzNjY4MzEz?cjc=gsrnanuj</a></li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>クラスコード</strong></p>
+</div>
+<div class="callout-content">
+<p>j4osjaqj</p>
+</div>
+</div>
+</div>
+</section>
+<section id="今回の目標" class="slide level2">
+<h2>今回の目標</h2>
+<ul>
+<li>クロス集計表が作成できる</li>
+<li>ggplot2でグラフが作成できる</li>
+<li>箱ひげ図、散布図が作成できる</li>
+<li>相関係数を求められる</li>
+</ul>
+</section>
+<section>
+<section id="講義準備" class="title-slide slide level1 center" data-background-color="#17194c">
+<h1>講義準備</h1>
+
+</section>
+<section id="講義準備-1" class="slide level2">
+<h2>講義準備</h2>
+<p><strong>ライブラリの保存フォルダの作成</strong></p>
+<ul>
+<li>Drive→Classroom→2026年度 経済データ分析演習B2に「R_Library」ファルダを作成</li>
+<li>後にライブラリの読み込み・呼び出しが早くなります</li>
+</ul>
+<p><strong>第6回講義フォルダ作成</strong></p>
+<ul>
+<li>Drive→Classroom→2026年度 経済データ分析演習B2に「第6回」フォルダを作成</li>
+</ul>
+<p><strong>第5回Colabファイルの再利用</strong></p>
+<ul>
+<li>Driveの「第5回」フォルダ上にある前回課題提出Colabファイルを開く</li>
+<li>「ファイル」→「移動」→先ほど作成した「第6回」に移動</li>
+</ul>
+</section>
+<section id="driveのマウント" class="slide level2">
+<h2>Driveのマウント</h2>
+<p><strong>マウント</strong></p>
+<ul>
+<li>マウントとは、ColabからDriveに接続すること</li>
+<li>方法は二つありますが、</li>
+<li>どちらもランタイムのタイプが「<strong>Python 3</strong>」であることが必要</li>
+<li><strong>ランタイムのタイプを変更する前にDriveをマウントする</strong></li>
+</ul>
+</section>
+<section id="マウントの方法python-code1" class="slide level2">
+<h2>マウントの方法：Python code(1)</h2>
+<ul>
+<li>以下のCodeをコードセルに入力し実行</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="" aria-label="1"></a>from google.colab import drive</span>
+<span id="cb1-2"><a href="" aria-label="2"></a>drive.mount('/content/drive')</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="columns">
+<div class="column fragment" style="width:65%;">
+<p><strong>実行</strong></p>
+<ul>
+<li>警告が出るので、「Googleドライブに接続」を選択</li>
+<li>Googleへのログインが求められるので「toyo.jp」のアカウントを選択</li>
+</ul>
+</div><div class="column fragment" style="width:25%;">
+<p><img data-src="images/R45.png"></p>
+</div><div class="column fragment" style="width:70%;">
+<p><strong>アクセスの許可</strong></p>
+<ul>
+<li>アカウントへのアクセス許可を求められるので、「許可」をクリック</li>
+</ul>
+</div><div class="column fragment" style="width:20%;">
+<p><img data-src="images/R46.png"></p>
+</div></div>
+</section>
+<section id="マウントの方法python-code2" class="slide level2">
+<h2>マウントの方法：Python code(2)</h2>
+<p><strong>マウントの状況のチェック</strong></p>
+<ul>
+<li>アイコン選択方法と異なり、左側のバーにファイルは表示されません</li>
+<li>以下のようになっていればOK</li>
+</ul>
+<p><img data-src="images/R47.png" class="" style="width:50.0%" alt="Screenshot of code with a light theme on white background"></p>
+</section>
+<section id="ランタイムのタイプの変更" class="slide level2">
+<h2>ランタイムのタイプの変更</h2>
+<p><strong>Rへの変更</strong></p>
+<ul>
+<li>左上の「ランタイム」から「ランタイムのタイプの変更」を選択</li>
+<li>ランタイムのタイプをRに変更</li>
+<li>Driveへのマウントをした後にランタイムのタイプを変更しても、Driveのマウントは切れません</li>
+</ul>
+<p><img data-src="images/R48.png" class="" style="width:70.0%" alt="Screenshot of code with a light theme on white background"></p>
+</section>
+<section id="日本語フォントのインストール" class="slide level2">
+<h2>日本語フォントのインストール</h2>
+<ul>
+<li>Colabでは日本語フォントがデフォルトで使えないことがあります</li>
+<li>特に、今後作図で使用するggplot2では文字化けしてしてしまいます</li>
+<li>そこで、日本語フォントを先にインストールします</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="" aria-label="1"></a>system("apt-get install -y fonts-noto-cjk", intern=TRUE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="パッケージのdriveへの保存" class="slide level2">
+<h2>パッケージのDriveへの保存</h2>
+<ul>
+<li>ライブラリの読み込み・呼び出しにはかなり時間がかかる</li>
+<li>それは作業、課題へのハードルになる、</li>
+<li>ライブラリの読み込み・呼び出しを早くするために、パッケージを保存しておく</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="" aria-label="1"></a><span class="fu"># ライブラリのインストールがDriveの「R_Library」にされる</span></span>
+<span id="cb3-2"><a href="" aria-label="2"></a><span class="fu"># 呼び出しも「R_Library」からされる</span></span>
+<span id="cb3-3"><a href="" aria-label="3"></a>.libPaths("/content/drive/MyDrive/Classroom/2024年度　経済データ分析演習B2/R_Libraray")</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>1回目のpacmanによるライブラリの読み込み・呼び出しには10分程度かかります</li>
+<li>その1回で「R_Library」にパッケージが保存されている</li>
+<li>ただし、実はtidyverseは保存されないので、こちらは別で呼び出す</li>
+</ul>
+</section>
+<section id="ライブラリの読み込み" class="slide level2">
+<h2>ライブラリの読み込み</h2>
+<ul>
+<li>もっと簡単に、一括でパッケージの読み込み・呼び出しができるpacman関数を利用</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-label="1"></a><span class="co"># pacman パッケージがインストールされていることを確認する</span></span>
+<span id="cb4-2"><a href="" aria-label="2"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span>
+<span id="cb4-3"><a href="" aria-label="3"></a></span>
+<span id="cb4-4"><a href="" aria-label="4"></a><span class="co"># CRAN から入手可能なパッケージ</span></span>
+<span id="cb4-5"><a href="" aria-label="5"></a><span class="do">##############################</span></span>
+<span id="cb4-6"><a href="" aria-label="6"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(</span>
+<span id="cb4-7"><a href="" aria-label="7"></a>  pacman, <span class="co"># パッケージの読み込みをする関数</span></span>
+<span id="cb4-8"><a href="" aria-label="8"></a>  R.utils,</span>
+<span id="cb4-9"><a href="" aria-label="9"></a>  gt,</span>
+<span id="cb4-10"><a href="" aria-label="10"></a>  gtsummary, <span class="co"># データ分析の結果を表で作成する</span></span>
+<span id="cb4-11"><a href="" aria-label="11"></a>  rstatix, <span class="co"># 記述、検定統計量ができる</span></span>
+<span id="cb4-12"><a href="" aria-label="12"></a>  tinylabels <span class="co"># 変数に（日本語）ラベルを付ける</span></span>
+<span id="cb4-13"><a href="" aria-label="13"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-label="1"></a><span class="fu">library</span>(tidyverse, <span class="at">quietly=</span><span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="columns">
+<div class="column fragment" style="width:60%;">
+<ul>
+<li>読み込み・呼び出しのどちらもできる</li>
+<li>複数のパッケージを一括でできる</li>
+<li>ただし、CRANに登録されているパッケージのみ</li>
+</ul>
+</div><div class="column fragment" style="width:35%;">
+<p><img data-src="images/R410.png"></p>
+</div></div>
+</section></section>
+<section>
+<section id="データ加工作成の続き" class="title-slide slide level1 center" data-background-color="#17194c">
+<h1>データ加工・作成の続き</h1>
+
+</section>
+<section id="演習問題データ加工作成" class="slide level2">
+<h2>演習問題（データ加工・作成）</h2>
+<ul>
+<li>前回作成したデータ作成コードに、アルバイト関連変数を追加してください。</li>
+</ul>
+<p><strong>アルバイトダミー変数：dum_partjob</strong></p>
+<ul>
+<li>アルバイトしている場合を1、していない場合を0とするダミー変数</li>
+</ul>
+<p><strong>アルバイト時間変数：con_partjob_time</strong></p>
+<ul>
+<li>アルバイト時間の連続変数を作成</li>
+</ul>
+<p><strong>アルバイト収入変数：con_partjob_income</strong></p>
+<ul>
+<li>アルバイト収入の連続変数を作成</li>
+</ul>
+<p><br></p>
+<ul>
+<li>それぞれデータを確認してから作成してください</li>
+<li>特に連続変数に外れ値がある場合は、欠損値を指定してください</li>
+</ul>
+</section>
+<section id="変数ラベルの指定" class="slide level2">
+<h2>変数ラベルの指定</h2>
+<ul>
+<li>記述統計量などを作成するとオブジェクト名が表示されます</li>
+<li>レポートで使用するときは、読み手に伝わるように修正しないといけません</li>
+<li>変数ラベルを作成し、それを記述統計量などのオブジェクト名に適用します</li>
+<li>データを作成した下にコードセルを追加して、以下の貼り付けてください</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-label="1"></a><span class="co"># 作成した変数に対して、レポートでも使用できる日本語（英語でも良い）ラベルを付ける</span></span>
+<span id="cb6-2"><a href="" aria-label="2"></a>df_label <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="" aria-label="3"></a>  <span class="fu">label_variables</span>(<span class="at">id =</span> <span class="st">"id"</span>,</span>
+<span id="cb6-4"><a href="" aria-label="4"></a>                  <span class="at">dum_female =</span> <span class="st">"女性ダミー"</span>,</span>
+<span id="cb6-5"><a href="" aria-label="5"></a>                  <span class="at">dis_age =</span> <span class="st">"年齢"</span>,</span>
+<span id="cb6-6"><a href="" aria-label="6"></a>                  <span class="at">cat12_birth =</span> <span class="st">"誕生月"</span>,</span>
+<span id="cb6-7"><a href="" aria-label="7"></a>                  <span class="at">cat5_grade =</span> <span class="st">"学年"</span>,</span>
+<span id="cb6-8"><a href="" aria-label="8"></a>                  <span class="at">dum_econ =</span> <span class="st">"経済学部ダミー"</span>,</span>
+<span id="cb6-9"><a href="" aria-label="9"></a>                  <span class="at">dum_exstud =</span> <span class="st">"留学生ダミー"</span>,</span>
+<span id="cb6-10"><a href="" aria-label="10"></a>                  <span class="at">dis_happy_wk =</span> <span class="st">"最近1週間の幸福度"</span>,</span>
+<span id="cb6-11"><a href="" aria-label="11"></a>                  <span class="at">dis_happy_yr =</span> <span class="st">"最近1年間の幸福度"</span>,</span>
+<span id="cb6-12"><a href="" aria-label="12"></a>                  <span class="at">dis_happy_lf =</span> <span class="st">"これまでの幸福度"</span>,</span>
+<span id="cb6-13"><a href="" aria-label="13"></a>                  <span class="at">cat5_health =</span> <span class="st">"健康状態カテゴリ（昇順）"</span>,</span>
+<span id="cb6-14"><a href="" aria-label="14"></a>                  <span class="at">con_sleep_wd =</span> <span class="st">"平日の睡眠時間（時間）"</span>,</span>
+<span id="cb6-15"><a href="" aria-label="15"></a>                  <span class="at">dum_live_single =</span> <span class="st">"一人暮らしダミー"</span>,</span>
+<span id="cb6-16"><a href="" aria-label="16"></a>                  <span class="at">cat5_commut_time =</span> <span class="st">"通学時間カテゴリ"</span>,</span>
+<span id="cb6-17"><a href="" aria-label="17"></a>                  <span class="at">cat5_gpa =</span> <span class="st">"GPAカテゴリ（昇順）"</span>,</span>
+<span id="cb6-18"><a href="" aria-label="18"></a>                  <span class="at">con_income =</span> <span class="st">"所得（万円）"</span>,</span>
+<span id="cb6-19"><a href="" aria-label="19"></a>                  <span class="at">con_consump =</span> <span class="st">"支出（万円）"</span>,</span>
+<span id="cb6-20"><a href="" aria-label="20"></a>                  <span class="at">dum_partjob =</span> <span class="st">"アルバイトダミー"</span>,</span>
+<span id="cb6-21"><a href="" aria-label="21"></a>                  <span class="at">con_partjob_time =</span> <span class="st">"アルバイト時間（時間/週）"</span>,</span>
+<span id="cb6-22"><a href="" aria-label="22"></a>                  <span class="at">con_partjob_income =</span> <span class="st">"アルバイト収入（万円）"</span>)</span>
+<span id="cb6-23"><a href="" aria-label="23"></a>labels <span class="ot">&lt;-</span> <span class="fu">variable_label</span>(df_label) <span class="co"># 作成したラベルをlabelsというオブジェクトに代入しておく</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="記述統計量の修正" class="slide level2">
+<h2>記述統計量の修正</h2>
+<ul>
+<li>前回gt関数で表にした記述統計量のオブジェクト名をラベル名に変更する</li>
+<li>gt()関数まえに、mutate(variable = labels[variable])として、列名variableにlabelsオブジェクトからラベル名を適用させる</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-label="1"></a><span class="do">## 最後にgt()とつけるときれいな表を作成してくれます。</span></span>
+<span id="cb7-2"><a href="" aria-label="2"></a><span class="do">## その場合は新たなオブジェクトに代入してください。</span></span>
+<span id="cb7-3"><a href="" aria-label="3"></a><span class="do">## また、tab_header関数で表のタイトル、fmt_number関数で指定した変数のフォーマット（小数点）を設定</span></span>
+<span id="cb7-4"><a href="" aria-label="4"></a>stat <span class="ot">&lt;-</span> <span class="fu">get_summary_stats</span>(df, <span class="at">show =</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"mean"</span>, <span class="st">"median"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="" aria-label="5"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> labels[variable]) <span class="sc">|&gt;</span> <span class="co"># variableをlabelsのラベルに変更する</span></span>
+<span id="cb7-6"><a href="" aria-label="6"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="" aria-label="7"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb7-8"><a href="" aria-label="8"></a>    <span class="at">title =</span> <span class="st">"Table 1"</span>, <span class="co"># タイトル</span></span>
+<span id="cb7-9"><a href="" aria-label="9"></a>    <span class="at">subtitle =</span> <span class="fu">md</span>(<span class="st">"記述統計量"</span>)) <span class="sc">|&gt;</span> <span class="co"># サブタイトル</span></span>
+<span id="cb7-10"><a href="" aria-label="10"></a>  <span class="fu">fmt_number</span>(</span>
+<span id="cb7-11"><a href="" aria-label="11"></a>    <span class="at">columns =</span> <span class="sc">-</span><span class="fu">c</span>(<span class="st">"n"</span>), <span class="co"># c()の前にマイナスをつけることで、n以外の列を小数点第3位とします.</span></span>
+<span id="cb7-12"><a href="" aria-label="12"></a>    <span class="at">decimals =</span> <span class="dv">3</span>) <span class="co"># 小数点第3位まで</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Code</a></li><li><a href="#tabset-1-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="" aria-label="1"></a><span class="fu">## gtで作成した関数をpython上に表示させます</span></span>
+<span id="cb8-2"><a href="" aria-label="2"></a><span class="fu">## PC上のRやRStudioでは、statで表示してくれます</span></span>
+<span id="cb8-3"><a href="" aria-label="3"></a>gt:::as.tags.gt_tbl(stat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="cell-output-display">
+<div id="uticfaekmm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#uticfaekmm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#uticfaekmm thead, #uticfaekmm tbody, #uticfaekmm tfoot, #uticfaekmm tr, #uticfaekmm td, #uticfaekmm th {
+  border-style: none;
+}
+
+#uticfaekmm p {
+  margin: 0;
+  padding: 0;
+}
+
+#uticfaekmm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#uticfaekmm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#uticfaekmm .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#uticfaekmm .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#uticfaekmm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uticfaekmm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uticfaekmm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#uticfaekmm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#uticfaekmm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#uticfaekmm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#uticfaekmm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#uticfaekmm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#uticfaekmm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#uticfaekmm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#uticfaekmm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#uticfaekmm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#uticfaekmm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#uticfaekmm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#uticfaekmm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uticfaekmm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#uticfaekmm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#uticfaekmm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#uticfaekmm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uticfaekmm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#uticfaekmm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#uticfaekmm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uticfaekmm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uticfaekmm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#uticfaekmm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uticfaekmm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#uticfaekmm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#uticfaekmm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uticfaekmm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uticfaekmm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#uticfaekmm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#uticfaekmm .gt_left {
+  text-align: left;
+}
+
+#uticfaekmm .gt_center {
+  text-align: center;
+}
+
+#uticfaekmm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#uticfaekmm .gt_font_normal {
+  font-weight: normal;
+}
+
+#uticfaekmm .gt_font_bold {
+  font-weight: bold;
+}
+
+#uticfaekmm .gt_font_italic {
+  font-style: italic;
+}
+
+#uticfaekmm .gt_super {
+  font-size: 65%;
+}
+
+#uticfaekmm .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#uticfaekmm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#uticfaekmm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#uticfaekmm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#uticfaekmm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#uticfaekmm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#uticfaekmm .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#uticfaekmm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#uticfaekmm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="7" class="gt_heading gt_title gt_font_normal">Table 1</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="7" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">記述統計量</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="variable" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">variable</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
+<th id="mean" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">mean</th>
+<th id="median" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">median</th>
+<th id="sd" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">sd</th>
+<th id="min" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">min</th>
+<th id="max" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">max</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="variable">id</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">149.461</td>
+<td class="gt_row gt_right" headers="median">149.000</td>
+<td class="gt_row gt_right" headers="sd">86.312</td>
+<td class="gt_row gt_right" headers="min">1.000</td>
+<td class="gt_row gt_right" headers="max">298.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="variable">女性ダミー</td>
+<td class="gt_row gt_right" headers="n">296</td>
+<td class="gt_row gt_right" headers="mean">0.449</td>
+<td class="gt_row gt_right" headers="median">0.000</td>
+<td class="gt_row gt_right" headers="sd">0.498</td>
+<td class="gt_row gt_right" headers="min">0.000</td>
+<td class="gt_row gt_right" headers="max">1.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="variable">年齢</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">19.896</td>
+<td class="gt_row gt_right" headers="median">20.000</td>
+<td class="gt_row gt_right" headers="sd">1.611</td>
+<td class="gt_row gt_right" headers="min">18.000</td>
+<td class="gt_row gt_right" headers="max">27.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="variable">誕生月</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">6.478</td>
+<td class="gt_row gt_right" headers="median">7.000</td>
+<td class="gt_row gt_right" headers="sd">3.317</td>
+<td class="gt_row gt_right" headers="min">1.000</td>
+<td class="gt_row gt_right" headers="max">12.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="variable">学年</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">1.906</td>
+<td class="gt_row gt_right" headers="median">2.000</td>
+<td class="gt_row gt_right" headers="sd">1.035</td>
+<td class="gt_row gt_right" headers="min">1.000</td>
+<td class="gt_row gt_right" headers="max">5.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="variable">経済学部ダミー</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">0.391</td>
+<td class="gt_row gt_right" headers="median">0.000</td>
+<td class="gt_row gt_right" headers="sd">0.489</td>
+<td class="gt_row gt_right" headers="min">0.000</td>
+<td class="gt_row gt_right" headers="max">1.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="variable">留学生ダミー</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">0.061</td>
+<td class="gt_row gt_right" headers="median">0.000</td>
+<td class="gt_row gt_right" headers="sd">0.239</td>
+<td class="gt_row gt_right" headers="min">0.000</td>
+<td class="gt_row gt_right" headers="max">1.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="variable">最近1週間の幸福度</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">5.529</td>
+<td class="gt_row gt_right" headers="median">6.000</td>
+<td class="gt_row gt_right" headers="sd">2.774</td>
+<td class="gt_row gt_right" headers="min">0.000</td>
+<td class="gt_row gt_right" headers="max">10.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="variable">最近1年間の幸福度</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">5.475</td>
+<td class="gt_row gt_right" headers="median">6.000</td>
+<td class="gt_row gt_right" headers="sd">2.519</td>
+<td class="gt_row gt_right" headers="min">0.000</td>
+<td class="gt_row gt_right" headers="max">10.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="variable">これまでの幸福度</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">6.013</td>
+<td class="gt_row gt_right" headers="median">6.000</td>
+<td class="gt_row gt_right" headers="sd">2.523</td>
+<td class="gt_row gt_right" headers="min">0.000</td>
+<td class="gt_row gt_right" headers="max">10.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="variable">健康状態カテゴリ（昇順）</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">3.818</td>
+<td class="gt_row gt_right" headers="median">4.000</td>
+<td class="gt_row gt_right" headers="sd">1.004</td>
+<td class="gt_row gt_right" headers="min">1.000</td>
+<td class="gt_row gt_right" headers="max">5.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="variable">平日の睡眠時間（時間）</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">6.309</td>
+<td class="gt_row gt_right" headers="median">6.000</td>
+<td class="gt_row gt_right" headers="sd">1.138</td>
+<td class="gt_row gt_right" headers="min">2.000</td>
+<td class="gt_row gt_right" headers="max">10.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="variable">一人暮らしダミー</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">0.259</td>
+<td class="gt_row gt_right" headers="median">0.000</td>
+<td class="gt_row gt_right" headers="sd">0.439</td>
+<td class="gt_row gt_right" headers="min">0.000</td>
+<td class="gt_row gt_right" headers="max">1.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="variable">通学時間カテゴリ</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">2.441</td>
+<td class="gt_row gt_right" headers="median">2.000</td>
+<td class="gt_row gt_right" headers="sd">0.995</td>
+<td class="gt_row gt_right" headers="min">1.000</td>
+<td class="gt_row gt_right" headers="max">5.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="variable">GPAカテゴリ（昇順）</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">3.845</td>
+<td class="gt_row gt_right" headers="median">4.000</td>
+<td class="gt_row gt_right" headers="sd">0.764</td>
+<td class="gt_row gt_right" headers="min">1.000</td>
+<td class="gt_row gt_right" headers="max">5.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="variable">所得（万円）</td>
+<td class="gt_row gt_right" headers="n">296</td>
+<td class="gt_row gt_right" headers="mean">8.545</td>
+<td class="gt_row gt_right" headers="median">8.000</td>
+<td class="gt_row gt_right" headers="sd">5.481</td>
+<td class="gt_row gt_right" headers="min">0.000</td>
+<td class="gt_row gt_right" headers="max">30.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="variable">支出（万円）</td>
+<td class="gt_row gt_right" headers="n">285</td>
+<td class="gt_row gt_right" headers="mean">5.603</td>
+<td class="gt_row gt_right" headers="median">5.000</td>
+<td class="gt_row gt_right" headers="sd">4.926</td>
+<td class="gt_row gt_right" headers="min">0.000</td>
+<td class="gt_row gt_right" headers="max">34.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="variable">アルバイトダミー</td>
+<td class="gt_row gt_right" headers="n">297</td>
+<td class="gt_row gt_right" headers="mean">0.761</td>
+<td class="gt_row gt_right" headers="median">1.000</td>
+<td class="gt_row gt_right" headers="sd">0.427</td>
+<td class="gt_row gt_right" headers="min">0.000</td>
+<td class="gt_row gt_right" headers="max">1.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="variable">アルバイト時間（時間/週）</td>
+<td class="gt_row gt_right" headers="n">296</td>
+<td class="gt_row gt_right" headers="mean">10.777</td>
+<td class="gt_row gt_right" headers="median">10.000</td>
+<td class="gt_row gt_right" headers="sd">8.903</td>
+<td class="gt_row gt_right" headers="min">0.000</td>
+<td class="gt_row gt_right" headers="max">48.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="variable">アルバイト収入（万円）</td>
+<td class="gt_row gt_right" headers="n">226</td>
+<td class="gt_row gt_right" headers="mean">6.910</td>
+<td class="gt_row gt_right" headers="median">7.000</td>
+<td class="gt_row gt_right" headers="sd">3.399</td>
+<td class="gt_row gt_right" headers="min">0.000</td>
+<td class="gt_row gt_right" headers="max">30.000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="二変量統計" class="title-slide slide level1 center" data-background-color="#17194c">
+<h1>二変量統計</h1>
+
+</section>
+<section id="簡易版とレポート掲載用" class="slide level2">
+<h2>簡易版とレポート掲載用</h2>
+<ul>
+<li>前回のファイルの最後の部分にテキストセルを追加</li>
+<li>「## 二変量統計（簡易版：自分での確認用）」としましょう</li>
+</ul>
+<p><strong>簡易版</strong></p>
+<ul>
+<li>簡易版では、自身が分析をする上で確認するものです</li>
+<li>実際にレポートで活用する際は、体裁を整えますが、</li>
+<li>今回は気になる二変量統計をまず簡単に確認する方法です</li>
+</ul>
+<p><strong>レポート掲載用</strong></p>
+<ul>
+<li>レポートは自身が伝えたいことを簡潔にまとめる必要があります</li>
+<li>確認用で作成したすべての統計量をレポートに載せるわけにはいきません</li>
+<li>レポートのストリートにあった統計量だけを選んで、</li>
+<li>レポート掲載用として体裁を整えた表を作成します</li>
+</ul>
+</section>
+<section id="簡易版-1" class="slide level2">
+<h2>簡易版 (1)</h2>
+<p><strong>質的変数</strong>：ダミー変数および離散変数だけのクロス集計</p>
+<div class="columns">
+<p><strong>table関数 &amp; addmargins関数：</strong></p><div class="column fragment" style="width:50%;">
+<ul>
+<li>集計行・列を含めたクロス集計を作成</li>
+</ul>
+</div><div class="column fragment" style="width:45%;">
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Code</a></li><li><a href="#tabset-2-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="" aria-label="1"></a><span class="fu"># 女性ダミーとアルバイトダミーのクロス集計</span></span>
+<span id="cb9-2"><a href="" aria-label="2"></a>df |&gt;</span>
+<span id="cb9-3"><a href="" aria-label="3"></a>  select(dum_female, dum_partjob) |&gt;</span>
+<span id="cb9-4"><a href="" aria-label="4"></a>  table() |&gt; # table関数でクロス集計を作成</span>
+<span id="cb9-5"><a href="" aria-label="5"></a>  addmargins() # 集計行・列を追加</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          dum_partjob
+dum_female   0   1 Sum
+       0    50 113 163
+       1    21 112 133
+       Sum  71 225 296</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column fragment" style="width:50%;">
+<p><strong>prop.table関数</strong></p>
+<ul>
+<li>比率でのクロス集計を作成</li>
+</ul>
+</div><div class="column fragment" style="width:45%;">
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Code</a></li><li><a href="#tabset-3-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="" aria-label="1"></a>df |&gt;</span>
+<span id="cb11-2"><a href="" aria-label="2"></a>  select(dum_female, dum_partjob) |&gt;</span>
+<span id="cb11-3"><a href="" aria-label="3"></a>  table() |&gt; # クロス集計を作成</span>
+<span id="cb11-4"><a href="" aria-label="4"></a>  prop.table() # クロス集計の中身を比率に変換</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          dum_partjob
+dum_female          0          1
+         0 0.16891892 0.38175676
+         1 0.07094595 0.37837838</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="簡易版-2" class="slide level2">
+<h2>簡易版 (2)</h2>
+<div class="columns">
+<p><strong>カテゴリー変数</strong></p><div class="column fragment" style="width:50%;">
+<ul>
+<li>クロス集計はカテゴリー変数でも可能</li>
+</ul>
+</div><div class="column fragment" style="width:45%;">
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Code</a></li><li><a href="#tabset-4-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="" aria-label="1"></a><span class="fu"># 女性ダミーと健康状態カテゴリのクロス集計</span></span>
+<span id="cb13-2"><a href="" aria-label="2"></a>df |&gt;</span>
+<span id="cb13-3"><a href="" aria-label="3"></a>  select(dum_female, cat5_health) |&gt;</span>
+<span id="cb13-4"><a href="" aria-label="4"></a>  table() |&gt;</span>
+<span id="cb13-5"><a href="" aria-label="5"></a>  addmargins()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-4-2">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          cat5_health
+dum_female   1   2   3   4   5 Sum
+       0     3  15  36  60  49 163
+       1     0  16  33  46  38 133
+       Sum   3  31  69 106  87 296</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column fragment" style="width:35%;">
+<p><strong>量的変数</strong></p>
+<ul>
+<li>連続変数のクロス集計では、</li>
+<li>cut &amp; seq関数を使用します</li>
+</ul>
+</div><div class="column fragment" style="width:60%;">
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Code</a></li><li><a href="#tabset-5-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="" aria-label="1"></a><span class="fu"># 女性ダミーと所得のクロス集計を作成</span></span>
+<span id="cb15-2"><a href="" aria-label="2"></a><span class="fu"># 連続変数である所得を5万おきに階級を区切る</span></span>
+<span id="cb15-3"><a href="" aria-label="3"></a>df |&gt;</span>
+<span id="cb15-4"><a href="" aria-label="4"></a>  mutate(cat6_income = cut(con_income, breaks = seq(0, 30, 5), right = FALSE, include.lowest = TRUE, ordered_result = TRUE)) |&gt;</span>
+<span id="cb15-5"><a href="" aria-label="5"></a>  select(dum_female, cat6_income) |&gt;</span>
+<span id="cb15-6"><a href="" aria-label="6"></a>  table() |&gt;</span>
+<span id="cb15-7"><a href="" aria-label="7"></a>  addmargins()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-5-2">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>          cat6_income
+dum_female [0,5) [5,10) [10,15) [15,20) [20,25) [25,30] Sum
+       0      35     69      36      14       6       3 163
+       1      22     63      20      19       7       1 132
+       Sum    57    132      56      33      13       4 295</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="レポート掲載用" class="slide level2">
+<h2>レポート掲載用</h2>
+<ul>
+<li>レポートでは、必要な統計量をまとめて掲載用とします</li>
+<li>もちろん、場合によっては、単体で掲載することもあります</li>
+<li>適宜、自身のレポートに合わせて作成してください</li>
+<li>以下は完成形のコードです</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Code</a></li><li><a href="#tabset-6-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="" aria-label="1"></a><span class="fu"># 所得（後に回帰分析の被説明変数とする変数）を5万円区切りとして、他の興味ある変数（後に回帰分析の説明変数とする変数）とのクロス集計を作成</span></span>
+<span id="cb17-2"><a href="" aria-label="2"></a><span class="fu"># 興味ある変数には、女性ダミー、アルバイトダミー、健康状態カテゴリ、一人暮らしダミー、平均睡眠時間とする</span></span>
+<span id="cb17-3"><a href="" aria-label="3"></a><span class="fu"># 連続変数は平均睡眠時間で、最小2、最大10なので、seq(2, 10, 2)として階級を区切る</span></span>
+<span id="cb17-4"><a href="" aria-label="4"></a><span class="fu"># gt関数を使ってデータを表化して、cross_gtオブジェクトに代入</span></span>
+<span id="cb17-5"><a href="" aria-label="5"></a>cross_gt &lt;- df |&gt;</span>
+<span id="cb17-6"><a href="" aria-label="6"></a>  filter(!is.na(dum_female)) |&gt; # 女性の欠損値を除く</span>
+<span id="cb17-7"><a href="" aria-label="7"></a>  mutate(con_income = cut(con_income, breaks = seq(0, 30, 5), right = FALSE, include.lowest = TRUE, ordered_result = TRUE)) |&gt; # 所得を5万円で区切る（オブジェクト名はラベルを使うのでそのままとする）</span>
+<span id="cb17-8"><a href="" aria-label="8"></a>  mutate(con_sleep_wd = cut(con_sleep_wd, breaks = seq(2, 10, 2), right = FALSE, include.lowest = TRUE, ordered_result = TRUE)) |&gt; # 睡眠時間を2時間で区切る（オブジェクト名はラベルを使うのでそのままとする）</span>
+<span id="cb17-9"><a href="" aria-label="9"></a>  # cross_gtに代入しているので、df内の変数は加工されていないので、変数名を変えなくても問題ありません。</span>
+<span id="cb17-10"><a href="" aria-label="10"></a>  select(con_income, dum_female, dum_partjob, cat5_health, dum_live_single, con_sleep_wd) |&gt; # 必要な変数のみとする（所得、睡眠時間のもとの変数は除く）</span>
+<span id="cb17-11"><a href="" aria-label="11"></a>  mutate(dum_female = recode_factor(dum_female,</span>
+<span id="cb17-12"><a href="" aria-label="12"></a>                                    "0" = "0 = 男性",</span>
+<span id="cb17-13"><a href="" aria-label="13"></a>                                    "1" = "1 = 女性")) |&gt;</span>
+<span id="cb17-14"><a href="" aria-label="14"></a>  mutate(dum_partjob = recode_factor(dum_partjob,</span>
+<span id="cb17-15"><a href="" aria-label="15"></a>                                     "0" = "0 = していない",</span>
+<span id="cb17-16"><a href="" aria-label="16"></a>                                     "1" = "1 = している")) |&gt;</span>
+<span id="cb17-17"><a href="" aria-label="17"></a>  mutate(cat5_health = recode_factor(cat5_health,</span>
+<span id="cb17-18"><a href="" aria-label="18"></a>                                     "1" = "1 = よくない",</span>
+<span id="cb17-19"><a href="" aria-label="19"></a>                                     "2" = "2 = あまりよくない",</span>
+<span id="cb17-20"><a href="" aria-label="20"></a>                                     "3" = "3 = ふつう",</span>
+<span id="cb17-21"><a href="" aria-label="21"></a>                                     "4" = "4 = まあよい",</span>
+<span id="cb17-22"><a href="" aria-label="22"></a>                                     "5" = "5 = よい")) |&gt;</span>
+<span id="cb17-23"><a href="" aria-label="23"></a>  mutate(dum_live_single = recode_factor(dum_live_single,</span>
+<span id="cb17-24"><a href="" aria-label="24"></a>                                         "0" = "0 = していない",</span>
+<span id="cb17-25"><a href="" aria-label="25"></a>                                         "1" = "1 = している")) |&gt; # データの値にラベルをつける</span>
+<span id="cb17-26"><a href="" aria-label="26"></a>  mutate(across(c(dum_female, dum_partjob, cat5_health, dum_live_single), as.character)) |&gt; # 全て文字列型（character）に変換</span>
+<span id="cb17-27"><a href="" aria-label="27"></a>  pivot_longer(cols = -con_income, names_to = "variable", values_to = "value") |&gt; # データの縦横を変換（所得の6区分のみそのままとする）</span>
+<span id="cb17-28"><a href="" aria-label="28"></a>  count(con_income, variable, value) |&gt; # 変数をすべてcount関数で行ごとに同じ個数を数える</span>
+<span id="cb17-29"><a href="" aria-label="29"></a>  pivot_wider(names_from = con_income, values_from = n, values_fill = 0) |&gt; # 所得の6区分を列に移行</span>
+<span id="cb17-30"><a href="" aria-label="30"></a>  mutate(variable = labels<span class="co">[</span><span class="ot">variable</span><span class="co">]</span>) |&gt; # variableをlabelsのラベルに変更する</span>
+<span id="cb17-31"><a href="" aria-label="31"></a>  gt(groupname_col = "variable") |&gt; # クロス集計を変数ごとにグループ化する</span>
+<span id="cb17-32"><a href="" aria-label="32"></a>  tab_header(</span>
+<span id="cb17-33"><a href="" aria-label="33"></a>     title = "Table 3",</span>
+<span id="cb17-34"><a href="" aria-label="34"></a>     subtitle = md("所得とのクロス集計表")) #タイトルの作成</span>
+<span id="cb17-35"><a href="" aria-label="35"></a>gt:::as.tags.gt_tbl(cross_gt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-6-2">
+<div class="cell">
+<div class="cell-output-display">
+<div id="gkmrbkumrs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gkmrbkumrs table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#gkmrbkumrs thead, #gkmrbkumrs tbody, #gkmrbkumrs tfoot, #gkmrbkumrs tr, #gkmrbkumrs td, #gkmrbkumrs th {
+  border-style: none;
+}
+
+#gkmrbkumrs p {
+  margin: 0;
+  padding: 0;
+}
+
+#gkmrbkumrs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gkmrbkumrs .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#gkmrbkumrs .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gkmrbkumrs .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gkmrbkumrs .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gkmrbkumrs .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gkmrbkumrs .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gkmrbkumrs .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gkmrbkumrs .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gkmrbkumrs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gkmrbkumrs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gkmrbkumrs .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gkmrbkumrs .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#gkmrbkumrs .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#gkmrbkumrs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gkmrbkumrs .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gkmrbkumrs .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gkmrbkumrs .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gkmrbkumrs .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gkmrbkumrs .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gkmrbkumrs .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gkmrbkumrs .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#gkmrbkumrs .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gkmrbkumrs .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#gkmrbkumrs .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gkmrbkumrs .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gkmrbkumrs .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gkmrbkumrs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gkmrbkumrs .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gkmrbkumrs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gkmrbkumrs .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gkmrbkumrs .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gkmrbkumrs .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gkmrbkumrs .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gkmrbkumrs .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gkmrbkumrs .gt_left {
+  text-align: left;
+}
+
+#gkmrbkumrs .gt_center {
+  text-align: center;
+}
+
+#gkmrbkumrs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gkmrbkumrs .gt_font_normal {
+  font-weight: normal;
+}
+
+#gkmrbkumrs .gt_font_bold {
+  font-weight: bold;
+}
+
+#gkmrbkumrs .gt_font_italic {
+  font-style: italic;
+}
+
+#gkmrbkumrs .gt_super {
+  font-size: 65%;
+}
+
+#gkmrbkumrs .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#gkmrbkumrs .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gkmrbkumrs .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#gkmrbkumrs .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#gkmrbkumrs .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#gkmrbkumrs .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#gkmrbkumrs .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#gkmrbkumrs .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#gkmrbkumrs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="8" class="gt_heading gt_title gt_font_normal">Table 3</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="8" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">所得とのクロス集計表</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="value" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">value</th>
+<th id="[0,5)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">[0,5)</th>
+<th id="[5,10)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">[5,10)</th>
+<th id="[10,15)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">[10,15)</th>
+<th id="[15,20)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">[15,20)</th>
+<th id="[20,25)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">[20,25)</th>
+<th id="[25,30]" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">[25,30]</th>
+<th id="NA" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">NA</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="8" id="健康状態カテゴリ（昇順）" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">健康状態カテゴリ（昇順）</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="健康状態カテゴリ（昇順）  value">1 = よくない</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [0,5)">2</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [5,10)">1</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [10,15)">0</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [15,20)">0</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [20,25)">0</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [25,30]">0</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  NA">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="健康状態カテゴリ（昇順）  value">2 = あまりよくない</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [0,5)">9</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [5,10)">10</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [10,15)">7</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [15,20)">4</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [20,25)">0</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [25,30]">1</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  NA">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="健康状態カテゴリ（昇順）  value">3 = ふつう</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [0,5)">17</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [5,10)">27</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [10,15)">13</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [15,20)">6</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [20,25)">5</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [25,30]">0</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  NA">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="健康状態カテゴリ（昇順）  value">4 = まあよい</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [0,5)">17</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [5,10)">51</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [10,15)">18</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [15,20)">13</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [20,25)">5</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [25,30]">2</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  NA">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="健康状態カテゴリ（昇順）  value">5 = よい</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [0,5)">12</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [5,10)">43</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [10,15)">18</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [15,20)">10</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [20,25)">3</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  [25,30]">1</td>
+<td class="gt_row gt_right" headers="健康状態カテゴリ（昇順）  NA">0</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="8" id="平日の睡眠時間（時間）" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">平日の睡眠時間（時間）</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="平日の睡眠時間（時間）  value">[2,4)</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [0,5)">1</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [5,10)">2</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [10,15)">1</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [15,20)">1</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [20,25)">0</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [25,30]">0</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  NA">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="平日の睡眠時間（時間）  value">[4,6)</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [0,5)">11</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [5,10)">41</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [10,15)">12</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [15,20)">6</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [20,25)">2</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [25,30]">1</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  NA">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="平日の睡眠時間（時間）  value">[6,8)</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [0,5)">35</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [5,10)">75</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [10,15)">35</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [15,20)">22</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [20,25)">9</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [25,30]">3</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  NA">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="平日の睡眠時間（時間）  value">[8,10]</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [0,5)">10</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [5,10)">14</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [10,15)">8</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [15,20)">4</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [20,25)">2</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  [25,30]">0</td>
+<td class="gt_row gt_right" headers="平日の睡眠時間（時間）  NA">0</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="8" id="女性ダミー" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">女性ダミー</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_left" headers="女性ダミー  value">0 = 男性</td>
+<td class="gt_row gt_right" headers="女性ダミー  [0,5)">35</td>
+<td class="gt_row gt_right" headers="女性ダミー  [5,10)">69</td>
+<td class="gt_row gt_right" headers="女性ダミー  [10,15)">36</td>
+<td class="gt_row gt_right" headers="女性ダミー  [15,20)">14</td>
+<td class="gt_row gt_right" headers="女性ダミー  [20,25)">6</td>
+<td class="gt_row gt_right" headers="女性ダミー  [25,30]">3</td>
+<td class="gt_row gt_right" headers="女性ダミー  NA">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="女性ダミー  value">1 = 女性</td>
+<td class="gt_row gt_right" headers="女性ダミー  [0,5)">22</td>
+<td class="gt_row gt_right" headers="女性ダミー  [5,10)">63</td>
+<td class="gt_row gt_right" headers="女性ダミー  [10,15)">20</td>
+<td class="gt_row gt_right" headers="女性ダミー  [15,20)">19</td>
+<td class="gt_row gt_right" headers="女性ダミー  [20,25)">7</td>
+<td class="gt_row gt_right" headers="女性ダミー  [25,30]">1</td>
+<td class="gt_row gt_right" headers="女性ダミー  NA">1</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="8" id="一人暮らしダミー" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">一人暮らしダミー</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="一人暮らしダミー  value">0 = していない</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  [0,5)">52</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  [5,10)">119</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  [10,15)">30</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  [15,20)">14</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  [20,25)">3</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  [25,30]">1</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  NA">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="一人暮らしダミー  value">1 = している</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  [0,5)">5</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  [5,10)">13</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  [10,15)">26</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  [15,20)">19</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  [20,25)">10</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  [25,30]">3</td>
+<td class="gt_row gt_right" headers="一人暮らしダミー  NA">0</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="8" id="アルバイトダミー" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">アルバイトダミー</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_left" headers="アルバイトダミー  value">0 = していない</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  [0,5)">38</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  [5,10)">12</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  [10,15)">10</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  [15,20)">6</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  [20,25)">4</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  [25,30]">1</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  NA">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="アルバイトダミー  value">1 = している</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  [0,5)">19</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  [5,10)">120</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  [10,15)">46</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  [15,20)">27</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  [20,25)">9</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  [25,30]">3</td>
+<td class="gt_row gt_right" headers="アルバイトダミー  NA">1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="データ変形関数pivot_longer" class="slide level2">
+<h2>データ変形関数：pivot_longer</h2>
+<p><strong>pivot_longer関数</strong> - 横長から縦長</p>
+<ul>
+<li>オブジェクトが列で追加されており、横長になっている</li>
+<li>これを縦長にしていくためにpivot_longer関数を使用する</li>
+</ul>
+<p><img data-src="images/R58.png" class="" style="width:70.0%" alt="Screenshot of code with a light theme on white background"></p>
+</section></section>
+<section>
+<section id="作図" class="title-slide slide level1 center" data-background-color="#17194c">
+<h1>作図</h1>
+
+</section>
+<section id="ggplot関数" class="slide level2">
+<h2>ggplot関数</h2>
+<ul>
+<li>データを使って作図を行います</li>
+<li>ggplot関数を使用します</li>
+</ul>
+<p><strong>覚えておくこと</strong></p>
+<ul>
+<li><strong>棒グラフ</strong>：質的データ、区切るなどの加工をした量的データ（ヒストグラム）</li>
+<li><strong>箱ひげ図</strong>：質的データ×量的データ</li>
+<li><strong>折れ線</strong>：量的データ、時系列データ</li>
+<li><strong>散布図</strong>：量的データ×量的データ</li>
+</ul>
+<p><br></p>
+<ul>
+<li>むやみやたらに作図をしても意味がありません</li>
+<li>自身が読者になにを伝えたいのか考えて作図すること</li>
+</ul>
+</section>
+<section id="棒グラフ" class="slide level2">
+<h2>棒グラフ</h2>
+<p><strong>geom_bar</strong>：棒グラフを作成</p>
+<div class="columns">
+<div class="column fragment" style="width:45%;">
+<p><strong>積み上げ図</strong></p>
+<ul>
+<li>geom_bar(position = “stack”)</li>
+<li>fill = factor(dum_female)で</li>
+<li>女性ダミーでグループ化した値を</li>
+<li>積み上げる</li>
+</ul>
+</div><div class="column fragment" style="width:50%;">
+<div class="panel-tabset">
+<ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1">Code</a></li><li><a href="#tabset-7-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="" aria-label="1"></a>df |&gt;</span>
+<span id="cb18-2"><a href="" aria-label="2"></a>  filter(!is.na(dum_female)) |&gt; # 女性ダミーの欠損値を除く</span>
+<span id="cb18-3"><a href="" aria-label="3"></a>  ggplot() + # 作図用の関数&lt;-作図に関しては「＋」でつなげる</span>
+<span id="cb18-4"><a href="" aria-label="4"></a>  # 横軸に健康状態カテゴリ、縦軸にその度数（人数）、凡例で女性ダミー</span>
+<span id="cb18-5"><a href="" aria-label="5"></a>  geom_bar(aes(x = factor(cat5_health), fill = factor(dum_female)), # factor関数で内部で数値化する</span>
+<span id="cb18-6"><a href="" aria-label="6"></a>                  colour = "black", # 棒グラフの枠線（黒）を追加</span>
+<span id="cb18-7"><a href="" aria-label="7"></a>                  position = "stack") + # 積み上げ図</span>
+<span id="cb18-8"><a href="" aria-label="8"></a>  theme_bw() + # theme_bw 白黒のテーマ</span>
+<span id="cb18-9"><a href="" aria-label="9"></a>  scale_fill_grey(start = .5, end = 1, # 0が黒、1が白で間はグレー</span>
+<span id="cb18-10"><a href="" aria-label="10"></a>                  labels = c("男性", "女性")) + #グループ化したデータをグレースタイルに</span>
+<span id="cb18-11"><a href="" aria-label="11"></a>  theme( # 様々な仕様を指定（今回はテキストサイズのみ）好みに合わせて変更可能</span>
+<span id="cb18-12"><a href="" aria-label="12"></a>    text = element_text(size = 14),</span>
+<span id="cb18-13"><a href="" aria-label="13"></a>    axis.title = element_text(size = 14), </span>
+<span id="cb18-14"><a href="" aria-label="14"></a>    axis.text = element_text(size = 14),</span>
+<span id="cb18-15"><a href="" aria-label="15"></a>    plot.title = element_text(size = 18) </span>
+<span id="cb18-16"><a href="" aria-label="16"></a>  ) + </span>
+<span id="cb18-17"><a href="" aria-label="17"></a>  ggtitle("図1:", "健康状態") + # 図のタイトル（カンマ:,）でサブタイトル</span>
+<span id="cb18-18"><a href="" aria-label="18"></a>  labs(x = "健康状態", # 横軸</span>
+<span id="cb18-19"><a href="" aria-label="19"></a>       y = "人数", # 縦軸</span>
+<span id="cb18-20"><a href="" aria-label="20"></a>       fill = "性別") # 凡例</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-7-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture06_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column fragment" style="width:45%;">
+<p><strong>となり合わせる</strong></p>
+<ul>
+<li>geom_bar(position = “dodge”)</li>
+<li>fill = factor(dum_female)で</li>
+<li>女性ダミーでグループ化した値を</li>
+<li>隣同士で表示させる</li>
+</ul>
+</div><div class="column fragment" style="width:50%;">
+<div class="panel-tabset">
+<ul id="tabset-8" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-8-1">Code</a></li><li><a href="#tabset-8-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="" aria-label="1"></a>df |&gt;</span>
+<span id="cb19-2"><a href="" aria-label="2"></a>  filter(!is.na(dum_female)) |&gt;</span>
+<span id="cb19-3"><a href="" aria-label="3"></a>  ggplot() +</span>
+<span id="cb19-4"><a href="" aria-label="4"></a>  geom_bar(aes(x = factor(cat5_health), fill = factor(dum_female)),</span>
+<span id="cb19-5"><a href="" aria-label="5"></a>           colour = "black", </span>
+<span id="cb19-6"><a href="" aria-label="6"></a>           position = "dodge") + # となり合わせ図</span>
+<span id="cb19-7"><a href="" aria-label="7"></a>  theme_bw() + # theme_bw 白黒のテーマ</span>
+<span id="cb19-8"><a href="" aria-label="8"></a>  scale_fill_grey(start = .5, end = 1,</span>
+<span id="cb19-9"><a href="" aria-label="9"></a>                  labels = c("男性", "女性")) +</span>
+<span id="cb19-10"><a href="" aria-label="10"></a>  theme(</span>
+<span id="cb19-11"><a href="" aria-label="11"></a>    text = element_text(size = 14),</span>
+<span id="cb19-12"><a href="" aria-label="12"></a>    axis.title = element_text(size = 14),</span>
+<span id="cb19-13"><a href="" aria-label="13"></a>    axis.text = element_text(size = 14),</span>
+<span id="cb19-14"><a href="" aria-label="14"></a>    plot.title = element_text(size = 18)</span>
+<span id="cb19-15"><a href="" aria-label="15"></a>  ) +</span>
+<span id="cb19-16"><a href="" aria-label="16"></a>  ggtitle("図1:", "健康状態") +</span>
+<span id="cb19-17"><a href="" aria-label="17"></a>  labs(x = "健康状態",</span>
+<span id="cb19-18"><a href="" aria-label="18"></a>       y = "人数",</span>
+<span id="cb19-19"><a href="" aria-label="19"></a>       fill = "性別")</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-8-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture06_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="ヒストグラム1" class="slide level2">
+<h2>ヒストグラム(1)</h2>
+<p><strong>geom_bar</strong>：cut関数を使ってdfオブジェクトからヒストグラムを作成</p>
+<div class="panel-tabset">
+<ul id="tabset-9" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-9-1">Code</a></li><li><a href="#tabset-9-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="" aria-label="1"></a>options(repr.plot.width = 12, repr.plot.height =7) # 表示させる図のサイズを指定（デフォルトだと横軸が潰れてしまう）</span>
+<span id="cb20-2"><a href="" aria-label="2"></a>df |&gt;</span>
+<span id="cb20-3"><a href="" aria-label="3"></a>  select(id, con_income) |&gt; # idと所得の変数のみを選択</span>
+<span id="cb20-4"><a href="" aria-label="4"></a>  mutate(class = cut(con_income, breaks = seq(0, 30, 2), right = FALSE, include.lowest = TRUE, ordered_result = TRUE)) |&gt; # 所得を階級ごとにわける</span>
+<span id="cb20-5"><a href="" aria-label="5"></a>  filter(!is.na(class)) |&gt; # 欠損値を除く</span>
+<span id="cb20-6"><a href="" aria-label="6"></a>  ggplot() +</span>
+<span id="cb20-7"><a href="" aria-label="7"></a>  geom_bar(aes(x = factor(class))) + # 階級classを横軸とする-&gt;縦軸はその度数となる</span>
+<span id="cb20-8"><a href="" aria-label="8"></a>  theme_bw() +</span>
+<span id="cb20-9"><a href="" aria-label="9"></a>  theme(</span>
+<span id="cb20-10"><a href="" aria-label="10"></a>    text = element_text(size = 14),</span>
+<span id="cb20-11"><a href="" aria-label="11"></a>    axis.title = element_text(size = 14),</span>
+<span id="cb20-12"><a href="" aria-label="12"></a>    axis.text = element_text(size = 14),</span>
+<span id="cb20-13"><a href="" aria-label="13"></a>    plot.title = element_text(size = 18)</span>
+<span id="cb20-14"><a href="" aria-label="14"></a>  ) +</span>
+<span id="cb20-15"><a href="" aria-label="15"></a>  labs(x = "階級",</span>
+<span id="cb20-16"><a href="" aria-label="16"></a>       y = "度数") +</span>
+<span id="cb20-17"><a href="" aria-label="17"></a>  ggtitle("所得のヒストグラム")</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-9-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture06_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ヒストグラム2" class="slide level2">
+<h2>ヒストグラム(2)</h2>
+<p><strong>geom_col</strong>：度数分布表freq_incomeオブジェクトからヒストグラムを作成</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="" aria-label="1"></a>options(repr.plot.width = 12, repr.plot.height =7)</span>
+<span id="cb21-2"><a href="" aria-label="2"></a>freq_income |&gt;</span>
+<span id="cb21-3"><a href="" aria-label="3"></a>  ggplot() +</span>
+<span id="cb21-4"><a href="" aria-label="4"></a>  # geom_colは横軸、縦軸の指定が必要</span>
+<span id="cb21-5"><a href="" aria-label="5"></a>  geom_col(aes(x = factor(class), y = freq.)) + # 横軸に階級class、縦軸に度数freq.を使用</span>
+<span id="cb21-6"><a href="" aria-label="6"></a>  theme_bw() +</span>
+<span id="cb21-7"><a href="" aria-label="7"></a>  theme(</span>
+<span id="cb21-8"><a href="" aria-label="8"></a>    text = element_text(size = 14),</span>
+<span id="cb21-9"><a href="" aria-label="9"></a>    axis.title = element_text(size = 14),</span>
+<span id="cb21-10"><a href="" aria-label="10"></a>    axis.text = element_text(size = 14),</span>
+<span id="cb21-11"><a href="" aria-label="11"></a>    plot.title = element_text(size = 18)</span>
+<span id="cb21-12"><a href="" aria-label="12"></a>  ) +</span>
+<span id="cb21-13"><a href="" aria-label="13"></a>  labs(x = "階級",</span>
+<span id="cb21-14"><a href="" aria-label="14"></a>       y = "度数") +</span>
+<span id="cb21-15"><a href="" aria-label="15"></a>  ggtitle("所得のヒストグラム")</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>簡単に作成する場合は、geom_barで構いません</li>
+<li>geom_barで思った通りの棒グラフが作図できない場合は、geom_colを使用してみてください</li>
+</ul>
+</section>
+<section id="箱ひげ図1" class="slide level2">
+<h2>箱ひげ図(1)</h2>
+<p><strong>geom_boxplot</strong>：横軸に質的変数、縦軸に量的変数を使用して箱ひげ図を作成</p>
+<ul>
+<li>質的変数はダミー、カテゴリー変数どちらでも問題ない</li>
+<li>量的変数は連続変数、離散変数どちらでも問題ない</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-10" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-10-1">Code</a></li><li><a href="#tabset-10-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="" aria-label="1"></a>options(repr.plot.width = 12, repr.plot.height =7)</span>
+<span id="cb22-2"><a href="" aria-label="2"></a>df |&gt;</span>
+<span id="cb22-3"><a href="" aria-label="3"></a>  ggplot() +</span>
+<span id="cb22-4"><a href="" aria-label="4"></a>  geom_boxplot(aes(x = factor(cat5_health), y = dis_happy_wk)) + # 横軸に健康状態カテゴリ、縦軸に幸福度</span>
+<span id="cb22-5"><a href="" aria-label="5"></a>  theme_bw() +</span>
+<span id="cb22-6"><a href="" aria-label="6"></a>  theme(</span>
+<span id="cb22-7"><a href="" aria-label="7"></a>    text = element_text(size = 14),</span>
+<span id="cb22-8"><a href="" aria-label="8"></a>    axis.title = element_text(size = 14), #すべてのテキスト要素</span>
+<span id="cb22-9"><a href="" aria-label="9"></a>    axis.text = element_text(size = 14),</span>
+<span id="cb22-10"><a href="" aria-label="10"></a>    plot.title = element_text(size = 18) # 両軸目盛の体裁</span>
+<span id="cb22-11"><a href="" aria-label="11"></a>  ) + </span>
+<span id="cb22-12"><a href="" aria-label="12"></a>  labs(x = "健康状態（よくない:1~よい:5)",</span>
+<span id="cb22-13"><a href="" aria-label="13"></a>       y = "幸福度（全く幸福度がない:0~完全に幸福感を感じる:10)") +</span>
+<span id="cb22-14"><a href="" aria-label="14"></a>  ggtitle("健康状態と幸福感の箱ひげ図")</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-10-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture06_files/figure-revealjs/unnamed-chunk-30-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="箱ひげ図2" class="slide level2">
+<h2>箱ひげ図(2)</h2>
+<ul>
+<li>fill関数でグループ分けも可能</li>
+<li>質的変数である必要がある</li>
+<li>量的変数（特に連続変数）の場合はデータを区切る</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-11" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-11-1">Code</a></li><li><a href="#tabset-11-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-11-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="" aria-label="1"></a>options(repr.plot.width = 12, repr.plot.height =7)</span>
+<span id="cb23-2"><a href="" aria-label="2"></a>df |&gt;</span>
+<span id="cb23-3"><a href="" aria-label="3"></a>  filter(!is.na(dum_female)) |&gt; # 女性ダミーの欠損値を除く</span>
+<span id="cb23-4"><a href="" aria-label="4"></a>  ggplot() +</span>
+<span id="cb23-5"><a href="" aria-label="5"></a>  geom_boxplot(aes(x = factor(cat5_health), y = dis_happy_wk, fill = factor(dum_female))) + # fill関数で男女を分ける</span>
+<span id="cb23-6"><a href="" aria-label="6"></a>  scale_fill_grey(start = .5, end = 1,</span>
+<span id="cb23-7"><a href="" aria-label="7"></a>                  labels = c("男性", "女性")) +</span>
+<span id="cb23-8"><a href="" aria-label="8"></a>  labs(x = "健康状態（よくない:1~よい:5)",</span>
+<span id="cb23-9"><a href="" aria-label="9"></a>       y = "幸福度（全く幸福度がない:0~完全に幸福感を感じる:10)",</span>
+<span id="cb23-10"><a href="" aria-label="10"></a>       fill = "性別") +</span>
+<span id="cb23-11"><a href="" aria-label="11"></a>  ggtitle("健康状態と幸福感の箱ひげ図") +</span>
+<span id="cb23-12"><a href="" aria-label="12"></a>  theme_bw() +</span>
+<span id="cb23-13"><a href="" aria-label="13"></a>  labs(x = "階級",</span>
+<span id="cb23-14"><a href="" aria-label="14"></a>       y = "度数") +</span>
+<span id="cb23-15"><a href="" aria-label="15"></a>  ggtitle("所得のヒストグラム") +</span>
+<span id="cb23-16"><a href="" aria-label="16"></a>  theme(</span>
+<span id="cb23-17"><a href="" aria-label="17"></a>    text = element_text(size = 14),</span>
+<span id="cb23-18"><a href="" aria-label="18"></a>    axis.title = element_text(size = 14),</span>
+<span id="cb23-19"><a href="" aria-label="19"></a>    axis.text = element_text(size = 14),</span>
+<span id="cb23-20"><a href="" aria-label="20"></a>    plot.title = element_text(size = 18)</span>
+<span id="cb23-21"><a href="" aria-label="21"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-11-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture06_files/figure-revealjs/unnamed-chunk-32-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="散布図1" class="slide level2">
+<h2>散布図(1)</h2>
+<p><strong>geom_point</strong>：両軸に連続変数を使って散布図を作成</p>
+<ul>
+<li>散布図は横軸、縦軸に連続変数を指定することで作成可能</li>
+<li>質的変数あるいは離散変数では望ましい散布図が作成されません</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-12" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-12-1">Code</a></li><li><a href="#tabset-12-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-12-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="" aria-label="1"></a>options(repr.plot.width = 12, repr.plot.height =7)</span>
+<span id="cb24-2"><a href="" aria-label="2"></a>df |&gt;</span>
+<span id="cb24-3"><a href="" aria-label="3"></a>  ggplot() +</span>
+<span id="cb24-4"><a href="" aria-label="4"></a>  geom_point(aes(x = con_income, y = con_consump)) + # 横軸に所得、縦軸に支出</span>
+<span id="cb24-5"><a href="" aria-label="5"></a>  theme_bw() +</span>
+<span id="cb24-6"><a href="" aria-label="6"></a>  theme(</span>
+<span id="cb24-7"><a href="" aria-label="7"></a>    text = element_text(size = 14),</span>
+<span id="cb24-8"><a href="" aria-label="8"></a>    axis.title = element_text(size = 14),</span>
+<span id="cb24-9"><a href="" aria-label="9"></a>    axis.text = element_text(size = 14),</span>
+<span id="cb24-10"><a href="" aria-label="10"></a>    plot.title = element_text(size = 18)</span>
+<span id="cb24-11"><a href="" aria-label="11"></a>  ) +</span>
+<span id="cb24-12"><a href="" aria-label="12"></a>  labs(x = "所得（万円／月）",</span>
+<span id="cb24-13"><a href="" aria-label="13"></a>       y = "支出（万円／月）") +</span>
+<span id="cb24-14"><a href="" aria-label="14"></a>  ggtitle("所得と支出の散布図")</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-12-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture06_files/figure-revealjs/unnamed-chunk-34-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="散布図2" class="slide level2">
+<h2>散布図(2)</h2>
+<ul>
+<li>fill関数でグループ分けも可能</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-13" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-13-1">Code</a></li><li><a href="#tabset-13-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-13-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="" aria-label="1"></a>options(repr.plot.width = 12, repr.plot.height =7)</span>
+<span id="cb25-2"><a href="" aria-label="2"></a>df |&gt;</span>
+<span id="cb25-3"><a href="" aria-label="3"></a>  filter(!is.na(dum_female)) |&gt;</span>
+<span id="cb25-4"><a href="" aria-label="4"></a>  ggplot() +</span>
+<span id="cb25-5"><a href="" aria-label="5"></a>  geom_point(aes(x = con_income, y = con_consump, fill = factor(dum_female)),</span>
+<span id="cb25-6"><a href="" aria-label="6"></a>             shape = 21, colour = "black", size = 3) +</span>
+<span id="cb25-7"><a href="" aria-label="7"></a>    scale_fill_grey(start = .5, end = 1,</span>
+<span id="cb25-8"><a href="" aria-label="8"></a>                  labels = c("男性", "女性")) +</span>
+<span id="cb25-9"><a href="" aria-label="9"></a>  theme_bw() +</span>
+<span id="cb25-10"><a href="" aria-label="10"></a>  theme(</span>
+<span id="cb25-11"><a href="" aria-label="11"></a>    text = element_text(size = 14),</span>
+<span id="cb25-12"><a href="" aria-label="12"></a>    axis.title = element_text(size = 14),</span>
+<span id="cb25-13"><a href="" aria-label="13"></a>    axis.text = element_text(size = 14),</span>
+<span id="cb25-14"><a href="" aria-label="14"></a>    plot.title = element_text(size = 18)</span>
+<span id="cb25-15"><a href="" aria-label="15"></a>  ) +</span>
+<span id="cb25-16"><a href="" aria-label="16"></a>  labs(x = "所得（万円／月）",</span>
+<span id="cb25-17"><a href="" aria-label="17"></a>       y = "支出（万円／月）",</span>
+<span id="cb25-18"><a href="" aria-label="18"></a>       fill = "性別") +</span>
+<span id="cb25-19"><a href="" aria-label="19"></a>  ggtitle("所得と支出の散布図")</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-13-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture06_files/figure-revealjs/unnamed-chunk-36-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="相関係数" class="slide level2">
+<h2>相関係数</h2>
+<ul>
+<li>相関係数は、cor関数を使用</li>
+<li>3変数以上の相関行列を作成する際は、</li>
+<li>use = “pairwise.complete.obs”を指定</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-14" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-14-1">Code</a></li><li><a href="#tabset-14-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-14-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="" aria-label="1"></a>df |&gt;</span>
+<span id="cb26-2"><a href="" aria-label="2"></a>  select(dum_female, con_income, con_consump) |&gt; # 相関行列を出したい変数を選択 select関数で指定しない場合は、データの全ての変数の相関行列を作成</span>
+<span id="cb26-3"><a href="" aria-label="3"></a>  cor(use = "pairwise.complete.obs") # use = "pairwise.complete.obs"はそれぞれの組み合わせに合わせて欠損値を除く</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-14-2">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>            dum_female con_income con_consump
+dum_female  1.00000000 0.05397653  0.04889161
+con_income  0.05397653 1.00000000  0.67013263
+con_consump 0.04889161 0.67013263  1.00000000</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="散布図と相関係数-図のpngでの保存" class="slide level2">
+<h2>散布図と相関係数 &amp; 図のpngでの保存</h2>
+<ul>
+<li>計算した相関係数を散布図内に表示させることができます</li>
+<li>ggplot関数内でannotate関数を使用します</li>
+<li>annotate(“text”, x = テキストを出す横軸の位置, y = テキストを出す縦軸の位置, label = “出したいテキスト”, parse = TRUE, size = 文字サイズ)</li>
+<li>また、ggsave関数でDrive内にpng形式で保存することもできます</li>
+</ul>
+<div class="panel-tabset">
+<ul id="tabset-15" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-15-1">Code</a></li><li><a href="#tabset-15-2">Output</a></li></ul>
+<div class="tab-content">
+<div id="tabset-15-1">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="" aria-label="1"></a><span class="fu">## annotate("text", x = テキストを出す横軸の位置, y = テキストを出す縦軸の位置, label = "出したいテキスト", parse = TRUE, size = 文字サイズ)</span></span>
+<span id="cb28-2"><a href="" aria-label="2"></a><span class="fu">## 相関係数は上記の相関行列から自身で入力する</span></span>
+<span id="cb28-3"><a href="" aria-label="3"></a>options(repr.plot.width = 12, repr.plot.height =7)</span>
+<span id="cb28-4"><a href="" aria-label="4"></a>df |&gt;</span>
+<span id="cb28-5"><a href="" aria-label="5"></a>  filter(!is.na(dum_female)) |&gt;</span>
+<span id="cb28-6"><a href="" aria-label="6"></a>  ggplot() +</span>
+<span id="cb28-7"><a href="" aria-label="7"></a>  geom_point(aes(x = con_income, y = con_consump, fill = factor(dum_female)),</span>
+<span id="cb28-8"><a href="" aria-label="8"></a>             shape = 21, colour = "black", size = 3) +</span>
+<span id="cb28-9"><a href="" aria-label="9"></a>    scale_fill_grey(start = .5, end = 1,</span>
+<span id="cb28-10"><a href="" aria-label="10"></a>                  labels = c("男性", "女性")) +</span>
+<span id="cb28-11"><a href="" aria-label="11"></a>  theme_bw() +</span>
+<span id="cb28-12"><a href="" aria-label="12"></a>  theme(</span>
+<span id="cb28-13"><a href="" aria-label="13"></a>    text = element_text(size = 14),</span>
+<span id="cb28-14"><a href="" aria-label="14"></a>    axis.title = element_text(size = 14),</span>
+<span id="cb28-15"><a href="" aria-label="15"></a>    axis.text = element_text(size = 14),</span>
+<span id="cb28-16"><a href="" aria-label="16"></a>    plot.title = element_text(size = 18)</span>
+<span id="cb28-17"><a href="" aria-label="17"></a>  ) + </span>
+<span id="cb28-18"><a href="" aria-label="18"></a>  labs(x = "所得（万円／月）",</span>
+<span id="cb28-19"><a href="" aria-label="19"></a>       y = "支出（万円／月）",</span>
+<span id="cb28-20"><a href="" aria-label="20"></a>       fill = "性別") +</span>
+<span id="cb28-21"><a href="" aria-label="21"></a>  ggtitle("所得と支出の散布図") +</span>
+<span id="cb28-22"><a href="" aria-label="22"></a>  annotate("text", x = 25, y = 2.5, label = "相関係数(r) == 0.670", parse = TRUE, size = 5) # 横軸25、縦軸2.5のところに、"相関係数(r) = 0.670"を表示、parse = TRUEで数式として表示</span>
+<span id="cb28-23"><a href="" aria-label="23"></a>ggsave("/content/drive/MyDrive/Classroom/2025年度　経済データ分析演習B2/第6回/第6回所得と支出の散布図.png", width = 12, height = 7,  dpi = 300) ## ggsave関数でDriveにggplotで作成した図をpngで保存</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-15-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture06_files/figure-revealjs/unnamed-chunk-40-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="lecture06_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="lecture06_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="lecture06_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="lecture06_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="lecture06_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="lecture06_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="lecture06_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
+  <script src="lecture06_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="lecture06_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="lecture06_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="lecture06_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="lecture06_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'multiplex': {"secret":null,"id":"e8a8033862486488e00a215f9eeb978aaff52c05bf300eb5a199958892cbf378","url":"https://multiplex.up.railway.app/"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
